@@ -1,31 +1,39 @@
 #make a game and display score
-#Video 41/129 CodeWithharr
+#Video 41/129 CodeWithHarry
 import random
-while 1:
-    user = input("Choose one s/w/g :")
-    if user=="s" or user=="w" or user=="g":
-        break
-    else:
-        print("Enter a valid input")
-#for computer1
-c1 = random.randint(1,3)
-if c1==1:
-    c1 = "snake"
-elif c1==2:
-    c1 = "Water"
-elif c1==3:
-    c1="Gun"
+username = input("_Hello Gamer_\nEnter your name:")
+userscore = 0
+computerscore = 0
+for i in range(10):
+    print(f"\n----------Round {i + 1}----------\n")
+    while True :
+        user = input("Choose one s/w/g :")
+        user = user.casefold()
+        if user=="s" or user=="w" or user=="g":
+            if user == "s":
+                user = "Snake"
+            elif user == "w":
+                user = "Water"
+            elif user == "g":
+                user = "Gun"
+            computer = ["Snake", "Water", "Gun"]
+            c = random.choice(computer)
+            choices =[user, c]
+            if choices==["Snake", "Water"] or choices==["Water", "Gun"] or choices==["Gun", "Snake"]:
+                userscore = userscore+1
+            elif choices==["Snake", "Gun"] or choices==["Water", "Snake"] or choices==["Gun", "Water"]:
+                computerscore = computerscore + 1
 
-#for computer2
-c2 = random.randint(1,3)
-if c2==1:
-    c2 = "snake"
-elif c2==2:
-    c2 = "Water"
-elif c2==3:
-    c2="Gun"
-
-print(f"You: {user}\nComputer1: {c1}\nComputer2: {c2}")
-
-def gam(a,b,c):
-    if [a,b,c]==[s,w,g]:
+            print(f"{username}: {user}\nComputer: {c}")
+            print(f"Scoreboard--->{username}: {userscore}  Computer: {computerscore}")
+            break
+        else:
+            print("Enter a valid input!!!")
+            continue
+#Results
+if userscore > computerscore:
+    print("-----Congratulatins!!!-----\n     -----YOU WON-----")
+elif userscore == computerscore:
+    print("-----GAME DRAW-----")
+else:
+    print("-----YOU LOSE-----")
